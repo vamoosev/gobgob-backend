@@ -27,7 +27,33 @@ async fn postjuttu(db: web::Data<Arc<Mutex<Connection>>>, body: String) -> std::
     // turhaa kikkailua, mutta en keksinyt miten saada rusqlite::Connection
     // toimimaan ilman clonea
     // HACK: onko tämä turhaa kikkailua?
-    //
+    // make body into json    
+    let json: serde_json::Value = serde_json::from_str(&body).unwrap();
+    let mac = json["mac"].as_str().unwrap();
+    let date = json["date"].as_str().unwrap();
+    let computer = json["computer"].as_str().unwrap();
+    db.execute(
+        "INSERT INTO macs (mac, date, computer) VALUES (?1, ?2, ?3)",
+        [mac, date, computer],
+    ).unwrap();
+    // make body into json    
+    let json: serde_json::Value = serde_json::from_str(&body).unwrap();
+    let mac = json["mac"].as_str().unwrap();
+    let date = json["date"].as_str().unwrap();
+    let computer = json["computer"].as_str().unwrap();
+    db.execute(
+        "INSERT INTO macs (mac, date, computer) VALUES (?1, ?2, ?3)",
+        [mac, date, computer],
+    ).unwrap();
+    // make body into json    
+    let json: serde_json::Value = serde_json::from_str(&body).unwrap();
+    let mac = json["mac"].as_str().unwrap();
+    let date = json["date"].as_str().unwrap();
+    let computer = json["computer"].as_str().unwrap();
+    db.execute(
+        "INSERT INTO macs (mac, date, computer) VALUES (?1, ?2, ?3)",
+        [mac, date, computer],
+    ).unwrap();
     // make body into json    
     let json: serde_json::Value = serde_json::from_str(&body).unwrap();
     let mac = json["mac"].as_str().unwrap();
